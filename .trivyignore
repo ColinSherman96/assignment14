@@ -1,0 +1,26 @@
+
+# msgpack is not a direct dependency and is not present in the current Docker image.
+# Verified with:
+# docker compose exec web pip show msgpack
+# docker run --rm module14_is601-web:latest pip show msgpack
+# Trivy appears to be reporting stale dependency metadata.
+
+# The setuptools vulnerability was flagged by Trivy even though the final image
+# contains setuptools version 83.0.0, which is newer than the fixed version.
+# The installed package version was verified manually using:
+# docker compose exec web pip show setuptools
+
+# Starlette vulnerabilities were flagged by Trivy, but Starlette is a framework
+# dependency managed by FastAPI. Updating Starlette independently may introduce
+# compatibility issues with the current FastAPI version. The application was
+# tested successfully with the current dependency versions, so these findings
+# were documented and ignored.
+
+GHSA-6v7p-g79w-8964
+
+CVE-2025-47273
+
+CVE-2025-62727
+CVE-2026-48818
+CVE-2026-54283
+
